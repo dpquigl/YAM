@@ -1,0 +1,67 @@
+message ControlRequest {
+	enum ControlType { 
+		NONE = 0;
+		START_SHARD = 1;
+		STOP_SHARD = 2;
+		SHARD_STATUS = 3;
+		SHARD_LIST = 4;
+	}
+	required ControlType type = 1;
+	optional ControlStartShardRequest start_request = 2;
+	optional ControlStopShardRequest stop_request = 3;
+	optional ControlShardStatusRequest status_request = 4;
+	optional ControlShardListRequest shard_list_request = 5;
+}
+
+message ControlReply {
+	enum ControlType { 
+		NONE = 0;
+		START_SHARD = 1;
+		STOP_SHARD = 2;
+		SHARD_STATUS = 3;
+		SHARD_LIST = 4;
+	}
+	required ControlType type = 1;
+	optional ControlStartShardReply start_reply = 2;
+	optional ControlStopShardReply stop_reply = 3;
+	optional ControlShardStatusReply status_reply = 4;
+	optional ControlShardListReply shard_list_reply = 5;
+}
+
+message ControlStartShardRequest {
+	required string tool_name = 1;
+}
+
+message ControlStartShardReply {
+	required int32 status = 1;
+}
+
+message ControlStopShardRequest {
+	required int32 shard_id = 1;
+	required int32 flags = 2;
+}
+
+message ControlStopShardReply {
+	required int32 status = 1;
+}
+
+message ControlShardStatusRequest {
+	required int32 shard_id = 1;
+}
+
+message ControlShardStatusReply {
+	required int32 status = 1;
+}
+
+message ControlShardListRequest {
+}
+
+message ControlShardListReply {
+	required int32 status = 1;
+	message ShardData {
+		required string name = 1;
+		required string status = 2;
+		required int32	id = 3;
+	}
+	repeated ShardData shard_data = 2;
+}

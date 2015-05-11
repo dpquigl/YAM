@@ -1,0 +1,10 @@
+enum MessageType { 
+	NONE = 0;
+	//Add message types here
+}
+
+message YamMessageBody {
+	required MessageType message_type = 1 [ default = NONE ];
+	//Add optional members of each message type as needed.
+	//optional Message message = 2;
+}

@@ -1,0 +1,15 @@
+import "control.proto";
+
+enum MessageType {
+	NONE = 0;
+	CONTROL_REQUEST = 1;
+	CONTROL_REPLY = 2;
+	TOOL_MESSAGE = 3;
+}
+
+
+message MessageHeader {
+	required MessageType type = 1;
+	optional bytes client_id = 2;
+	optional bytes session_id = 3;
+}
