@@ -1,0 +1,116 @@
+= YAM Command Definitions
+
+== Shard Control Commands
+
+The shard command is a multiplexed command which will provide a top level
+help record for listing, managing, and terminating shards. Each of these
+subcommands are detailed below.
+
+
+**++shard restart <shard_id>++**
+
+The restart command will be used to have the admin interface restart a shard. It
+should have the shard shut down gracefully first if possible and then kill and
+restart it if that is not possible. It is possible that while the shard is down
+that some messages will be lost.
+
+**++shard stop <shard_id> [-f]++**
+
+The stop command shut down a single shard specified by the shard_id. If it
+does terminate within a specific amount of time it will force the component to
+terminate. In the event that an instant termination is required and shutting
+down properly is not required the -f flag can be used to hard kill the shard.
+
+**++shard status <shard_id>++**
+
+The status command will have the shard management service query the status of
+the local components. Data should be returned in a structured format such as
+json or xml. This will be formalized as more information becomes apparent.
+
+**++shard list++**
+
+The shard list command will return a list with session ids of all active
+shards on the shard management service.
+
+**++shutdown++**
+
+The shutdown command will signal to all shards in the game start cleaning up and
+shutting down. This will allow the entire world to be torn down at the same
+time.
+
+=== Additional Commands
+
+At this time it is unclear how they would be implemented or if they are
+necessary however additional shard management commands for reloading
+configuration data, and importing/exporting server configs and data might be
+useful.
+
+== User Control Commands
+
+The user command is a multiplexed command which will provide a top level help
+record for adding, deleting, modifying, kicking, and banning user accounts.
+
+**++user add <username> <password>++**
+
+The user add command will allow the administrator to input a user into the
+system. Game asset creation will be handled by the game however this allows the
+user to log into the system and begin going through the asset creation process.
+
+** **++user del <username> <admin password>++**
+
+The user del command will allow the administrator to delete a user. Depending on
+how this is implemented in the game server this may permenantly delete the game
+asset data as well. This requires the admin password because it may be a
+completely fatal operation.
+
+**++user mod <username> <list of key=value pairs>++**
+
+At this time it is unclear what additional account metadata there will be. This
+could include an email address or other social media ties. For now the command
+is declared but left mostly undefined
+
+**++user list++**
+
+The user list command will list all of the user accounts in the server's
+database. This will return the username and some basic information such as last
+login to the administrator.
+
+**++user bio <username>++**
+
+The user bio command will give a detailed description of the account information
+for the username specified. This information depends on what we decide to store
+in the key/value pairs for the account.
+
+**++user contact <username> -a -f <message_file> <message>++**
+
+The user contact command will allow the administrator to email the username
+given with the message specified on the command line or passed in as a file
+argument using the -f flag. If the username is not specified the message will be
+sent to every registerd user unless the -a flag is specified then it will only
+send it to currently logged in users.
+
+**++user message <username> <message>++**
+
+The user message command will allow the administrator to send an in-game message
+to the username given with the message specified on the command line If the
+username is not specified the message will be sent to every user currently
+logged in to the system.
+
+**++user kick <username> <reason>++**
+
+The user kick command will allow the administrator to kick a user from the
+server. It will signal to the shard to have the user exit as gracefully as
+possible saving any outstanding character data and if a reason is specified it
+will be displayed to the user.
+**++user ban <username> <timeout> <reason>++**
+
+The user ban command will allow the administrator to ban a user. If a timeout is
+not specified the ban will be until the user is explicitly unbanned. If a
+timeout is specified (can use m,h,d,M formatting) the user will be automatically
+unbanned after that period. If an optional reason is specified it will be added
+to the user's account information so other administrators can identify why the
+person was banned.
+
+**++user unban <username>++**
+
+The user unban command will allow the administrator to explicitly unban a user.
