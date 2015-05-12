@@ -9,13 +9,12 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
-import control_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='yam.proto',
   package='',
-  serialized_pb='\n\tyam.proto\x1a\rcontrol.proto\"R\n\rMessageHeader\x12\x1a\n\x04type\x18\x01 \x02(\x0e\x32\x0c.MessageType\x12\x11\n\tclient_id\x18\x02 \x01(\x0c\x12\x12\n\nsession_id\x18\x03 \x01(\x0c*Q\n\x0bMessageType\x12\x08\n\x04NONE\x10\x00\x12\x13\n\x0f\x43ONTROL_REQUEST\x10\x01\x12\x11\n\rCONTROL_REPLY\x10\x02\x12\x10\n\x0cTOOL_MESSAGE\x10\x03')
+  serialized_pb='\n\tyam.proto\"R\n\rMessageHeader\x12\x1a\n\x04type\x18\x01 \x02(\x0e\x32\x0c.MessageType\x12\x11\n\tclient_id\x18\x02 \x01(\x0c\x12\x12\n\nsession_id\x18\x03 \x01(\x0c*s\n\x0bMessageType\x12\x08\n\x04NONE\x10\x00\x12\x13\n\x0f\x43ONTROL_REQUEST\x10\x01\x12\x11\n\rCONTROL_REPLY\x10\x02\x12\x10\n\x0cUSER_REQUEST\x10\x03\x12\x0e\n\nUSER_REPLY\x10\x04\x12\x10\n\x0cGAME_MESSAGE\x10\x05')
 
 _MESSAGETYPE = _descriptor.EnumDescriptor(
   name='MessageType',
@@ -36,21 +35,31 @@ _MESSAGETYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='TOOL_MESSAGE', index=3, number=3,
+      name='USER_REQUEST', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='USER_REPLY', index=4, number=4,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='GAME_MESSAGE', index=5, number=5,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=112,
-  serialized_end=193,
+  serialized_start=97,
+  serialized_end=212,
 )
 
 MessageType = enum_type_wrapper.EnumTypeWrapper(_MESSAGETYPE)
 NONE = 0
 CONTROL_REQUEST = 1
 CONTROL_REPLY = 2
-TOOL_MESSAGE = 3
+USER_REQUEST = 3
+USER_REPLY = 4
+GAME_MESSAGE = 5
 
 
 
@@ -91,8 +100,8 @@ _MESSAGEHEADER = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=28,
-  serialized_end=110,
+  serialized_start=13,
+  serialized_end=95,
 )
 
 _MESSAGEHEADER.fields_by_name['type'].enum_type = _MESSAGETYPE

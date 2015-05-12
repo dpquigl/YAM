@@ -9,12 +9,14 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
+import shard_pb2
+import user_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='yambody.proto',
   package='',
-  serialized_pb='\n\ryambody.proto\":\n\x0eYamMessageBody\x12(\n\x0cmessage_type\x18\x01 \x02(\x0e\x32\x0c.MessageType:\x04NONE*\x17\n\x0bMessageType\x12\x08\n\x04NONE\x10\x00')
+  serialized_pb='\n\ryambody.proto\x1a\x0bshard.proto\x1a\nuser.proto\"\x7f\n\x11YamMessageRequest\x12 \n\x04type\x18\x01 \x02(\x0e\x32\x0c.MessageType:\x04NONE\x12$\n\rshard_request\x18\x02 \x01(\x0b\x32\r.ShardRequest\x12\"\n\x0cuser_request\x18\x03 \x01(\x0b\x32\x0c.UserRequest\"u\n\x0fYamMessageReply\x12 \n\x04type\x18\x01 \x02(\x0e\x32\x0c.MessageType:\x04NONE\x12 \n\x0bshard_reply\x18\x02 \x01(\x0b\x32\x0b.ShardReply\x12\x1e\n\nuser_reply\x18\x03 \x01(\x0b\x32\n.UserReply*,\n\x0bMessageType\x12\x08\n\x04NONE\x10\x00\x12\t\n\x05SHARD\x10\x01\x12\x08\n\x04USER\x10\x02')
 
 _MESSAGETYPE = _descriptor.EnumDescriptor(
   name='MessageType',
@@ -26,29 +28,53 @@ _MESSAGETYPE = _descriptor.EnumDescriptor(
       name='NONE', index=0, number=0,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SHARD', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='USER', index=2, number=2,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=77,
-  serialized_end=100,
+  serialized_start=290,
+  serialized_end=334,
 )
 
 MessageType = enum_type_wrapper.EnumTypeWrapper(_MESSAGETYPE)
 NONE = 0
+SHARD = 1
+USER = 2
 
 
 
-_YAMMESSAGEBODY = _descriptor.Descriptor(
-  name='YamMessageBody',
-  full_name='YamMessageBody',
+_YAMMESSAGEREQUEST = _descriptor.Descriptor(
+  name='YamMessageRequest',
+  full_name='YamMessageRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='message_type', full_name='YamMessageBody.message_type', index=0,
+      name='type', full_name='YamMessageRequest.type', index=0,
       number=1, type=14, cpp_type=8, label=2,
       has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='shard_request', full_name='YamMessageRequest.shard_request', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='user_request', full_name='YamMessageRequest.user_request', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -61,18 +87,72 @@ _YAMMESSAGEBODY = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=17,
-  serialized_end=75,
+  serialized_start=42,
+  serialized_end=169,
 )
 
-_YAMMESSAGEBODY.fields_by_name['message_type'].enum_type = _MESSAGETYPE
-DESCRIPTOR.message_types_by_name['YamMessageBody'] = _YAMMESSAGEBODY
 
-class YamMessageBody(_message.Message):
+_YAMMESSAGEREPLY = _descriptor.Descriptor(
+  name='YamMessageReply',
+  full_name='YamMessageReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='YamMessageReply.type', index=0,
+      number=1, type=14, cpp_type=8, label=2,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='shard_reply', full_name='YamMessageReply.shard_reply', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='user_reply', full_name='YamMessageReply.user_reply', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=171,
+  serialized_end=288,
+)
+
+_YAMMESSAGEREQUEST.fields_by_name['type'].enum_type = _MESSAGETYPE
+_YAMMESSAGEREQUEST.fields_by_name['shard_request'].message_type = shard_pb2._SHARDREQUEST
+_YAMMESSAGEREQUEST.fields_by_name['user_request'].message_type = user_pb2._USERREQUEST
+_YAMMESSAGEREPLY.fields_by_name['type'].enum_type = _MESSAGETYPE
+_YAMMESSAGEREPLY.fields_by_name['shard_reply'].message_type = shard_pb2._SHARDREPLY
+_YAMMESSAGEREPLY.fields_by_name['user_reply'].message_type = user_pb2._USERREPLY
+DESCRIPTOR.message_types_by_name['YamMessageRequest'] = _YAMMESSAGEREQUEST
+DESCRIPTOR.message_types_by_name['YamMessageReply'] = _YAMMESSAGEREPLY
+
+class YamMessageRequest(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _YAMMESSAGEBODY
+  DESCRIPTOR = _YAMMESSAGEREQUEST
 
-  # @@protoc_insertion_point(class_scope:YamMessageBody)
+  # @@protoc_insertion_point(class_scope:YamMessageRequest)
+
+class YamMessageReply(_message.Message):
+  __metaclass__ = _reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _YAMMESSAGEREPLY
+
+  # @@protoc_insertion_point(class_scope:YamMessageReply)
 
 
 # @@protoc_insertion_point(module_scope)
