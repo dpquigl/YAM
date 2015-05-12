@@ -1,0 +1,69 @@
+message ShardRequest {
+	enum ShardMessageType { 
+		NONE = 0;
+		RESTART = 1;
+		STOP = 2;
+		STATUS = 3;
+		LIST = 4;
+		SHUTDOWN = 5;
+	}
+	required ShardMessageType type = 1;
+	optional RestartShardRequest restart_request = 2;
+	optional StopShardRequest stop_request = 3;
+	optional ShardStatusRequest status_request = 4;
+	optional ShardListRequest shard_list_request = 5;
+}
+
+message ShardReply {
+	enum ShardMessageType { 
+		NONE = 0;
+		RESTART = 1;
+		STOP = 2;
+		STATUS = 3;
+		LIST = 4;
+		SHUTDOWN = 5;
+	}
+	required ShardMessageType type = 1;
+	optional RestartShardReply restart_reply = 2;
+	optional StopShardReply stop_reply = 3;
+	optional ShardStatusReply status_reply = 4;
+	optional ShardListReply shard_list_reply = 5;
+}
+
+message RestartShardRequest {
+	required int32 shard_id = 1;
+}
+
+message RestartShardReply {
+	required int32 status = 1;
+}
+
+message StopShardRequest {
+	required int32 shard_id = 1;
+	required int32 flags = 2;
+}
+
+message StopShardReply {
+	required int32 status = 1;
+}
+
+message ShardStatusRequest {
+	required int32 shard_id = 1;
+}
+
+message ShardStatusReply {
+	required int32 status = 1;
+}
+
+message ShardShardListRequest {
+}
+
+message ShardListReply {
+	required int32 status = 1;
+	message ShardData {
+		required string name = 1;
+		required string status = 2;
+		required int32	id = 3;
+	}
+	repeated ShardData shard_data = 2;
+}
