@@ -1,0 +1,141 @@
+message UserRequest {
+	enum UserMessageType {
+		NONE = 0;
+		ADD = 1;
+		DEL = 2;
+		MOD = 3;
+		LIST = 4;
+		BIO = 5;
+		CONTACT = 6;
+		MESSAGE = 7;
+		KICK = 8;
+		BAN = 9;
+		UNBAN = 10;	
+	}
+	required UserMessageType type = 1;
+}
+
+message UserReply {
+	enum UserMessageType {
+		NONE = 0;
+		ADD = 1;
+		DEL = 2;
+		MOD = 3;
+		LIST = 4;
+		BIO = 5;
+		CONTACT = 6;
+		MESSAGE = 7;
+		KICK = 8;
+		BAN = 9;
+		UNBAN = 10;	
+	}
+	required UserMessageType type = 1;
+}
+
+message UserAddRequest {
+	required string username = 1;
+	required string password = 2;
+}
+
+message UserAddReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+
+message UserDelRequest {
+	required string username = 1;
+	required string password = 2;
+}
+
+
+message UserDelReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+
+
+message KeyValuePair {
+	required string key = 1;
+	required string value = 2;
+}
+
+message UserModRequest {
+	required string username = 1;
+	repeated KeyValuePair pairs = 2;
+}
+
+message UserModReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+
+
+message UserListRequest {
+}
+
+message UserListReply {
+	required int32 status = 1;
+	message UserListData {
+		required string username = 1;
+		required string last_login = 2;
+	}
+	repeated UserListData users = 2;
+}
+
+message UserBioRequest {
+	required string username = 1;
+}
+
+message UserBioReply {
+	required int32 status = 1;
+	repeated KeyValuePair pairs = 2;
+}
+
+message UserContactRequest {
+	optional string username = 1;
+	optional string error_message = 2;
+	optional bool broadcast = 3;
+}
+
+message UserContactReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+
+message UserMessageRequest {
+	optional string username = 1;
+	required string error_message = 2;
+}
+
+message UserMessageReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+
+message UserKickRequest {
+	required string username = 1;
+	optional string reason = 2;
+}
+
+message UserKickReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+message UserBanRequest {
+	required string username = 1;
+	optional string timeout = 2;
+	optional string reason = 3;
+}
+
+message UserBanReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}
+message UserUnbanRequest {
+	required string username = 1;
+}
+
+message UserUnbanReply {
+	required int32 status = 1;
+	optional string error_message = 2;
+}

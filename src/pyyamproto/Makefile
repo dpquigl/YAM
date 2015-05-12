@@ -1,7 +1,7 @@
 YAMPROTODIR = ../yamproto
 YAMPKGDIR = pyyamproto/protocol/
 
-PROTO_SRC := yambody.proto yam.proto control.proto 
+PROTO_SRC := yambody.proto yam.proto shard.proto user.proto 
 PROTO_PY := $(addprefix $(YAMPKGDIR),$(patsubst %.proto,%_pb2.py,$(PROTO_SRC)))
 DISTFILES := pyyamproto.protocol.egg-info build dist	
 

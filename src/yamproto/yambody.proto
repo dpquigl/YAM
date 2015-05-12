@@ -1,10 +1,20 @@
+import "shard.proto";
+import "user.proto";
+
 enum MessageType { 
 	NONE = 0;
-	//Add message types here
+	SHARD = 1;
+	USER = 2;
 }
 
-message YamMessageBody {
-	required MessageType message_type = 1 [ default = NONE ];
-	//Add optional members of each message type as needed.
-	//optional Message message = 2;
+message YamMessageRequest {
+	required MessageType type = 1 [ default = NONE ];
+	optional ShardRequest shard_request = 2;
+	optional UserRequest user_request = 3;
+}
+
+message YamMessageReply {
+	required MessageType type = 1 [ default = NONE ];
+	optional ShardReply shard_reply = 2;
+	optional UserReply user_reply  =3;
 }
