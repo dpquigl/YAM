@@ -102,6 +102,7 @@ The user kick command will allow the administrator to kick a user from the
 server. It will signal to the shard to have the user exit as gracefully as
 possible saving any outstanding character data and if a reason is specified it
 will be displayed to the user.
+
 **++user ban <username> <timeout> <reason>++**
 
 The user ban command will allow the administrator to ban a user. If a timeout is
