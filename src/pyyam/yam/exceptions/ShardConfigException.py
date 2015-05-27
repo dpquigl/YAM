@@ -1,0 +1,2 @@
+class ShardConfigException(ValueError):
+    pass
