@@ -56,7 +56,7 @@ The user add command will allow the administrator to input a user into the
 system. Game asset creation will be handled by the game however this allows the
 user to log into the system and begin going through the asset creation process.
 
-** **++user del <username> <admin password>++**
+**++user del <username> <admin password>++**
 
 The user del command will allow the administrator to delete a user. Depending on
 how this is implemented in the game server this may permenantly delete the game
