@@ -1,0 +1,32 @@
+= Yet Another MUD (YAM)
+
+YAM is an attempt at creating a generic MUD infrastructure/rule engine
+framework. At its core YAM is a message passing infrastructure for managing
+users and game servers with-in a multi-shard game environment. Even though YAM
+supports multiple shards it should be capable of functioning with all game
+content within a single shard/server. Also due to the way shards are configured
+multiple shards may reside on the same physical server. As long as a shard
+speaks the messaging protocol and format used by YAM the shard servers can be
+written in any language. The reference implementation for YAM is written in
+python however the concepts can be extended to any implementation.
+
+The second part of YAM is a rules engine which can be used to develop MUD game
+mechanics. The concept is to create the engine in a way that all content
+resides in modules which the engine evaluates in it's game loop. The reference
+implementation for the rules engine will be written in python. The rules engine
+will be documented as to what it expects and how it operates so even though the
+reference implementation is in Python it can be reimplemented in other
+languages just like the shard server.
+
+The primary goals of YAM are:
+
+- Provide backend infrastructure for a message passing MUD framework
+- Provide management infrastructure for shard servers
+- Provide management infrastructure and secure storage of user accounts/credentials
+- Provide a system for transfering user information between shards
+- Provide a rules engine for creating MUD content
+- Provide a framework for decoupling the game UI/Frontend from backend logic
+
+The first four goals serve to provide the backend infrastructure for creaing multi server multiplayer games. As long as the game servers can function as an asynchronous message passing entity they should be able to use the provided infrastructure. While the system will be designed to handle a MUD any asynchronous messages based server backend should be able to adapt the system.
+
+The last two goals are to provide a generic prototyping system which will allow developers to quickly and robustly create game content without having to worry about the front end. The concept developed from the idea of making the game an API. That way multiple front-end clients could be created. For example with the MUD a traditional text based front-end could be created or someone additionally could create several kinds of graphical front-ends (isometric 3D, 2D image based, etc...)
